@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  postgres:
+    container_name: pg_container
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: event
+      POSTGRES_PASSWORD: 'Passw0rd!'
+      POSTGRES_DB: event
+    ports:
+      - "24300:5432"
+    volumes:
+      - postgres:/data/ticketbot/postgres
+
+volumes:
+  postgres:
