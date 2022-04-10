@@ -19,7 +19,6 @@ public class OrganisationService
     {
         return await _dbContexts.Organisations
             .Include(o => o.Members)
-            .Include(o => o.Events)
             .Where(o => o.Members.Any(m => m.Id == memberId))
             .ToListAsync();
     }
@@ -86,6 +85,43 @@ public class OrganisationService
         }
         catch (OrganisationNotFoundException)
         {
+        }
+    }
+
+    private async Task<User> GetUser(string username)
+    {
+        var user = await _dbContexts.Users
+            .Where(u => u.Username == username)
+            .FirstOrDefaultAsync();
+        if (user == null)
+        {
+            throw new NotFoundException($"Could not user with username {username}");
+        }
+
+        return user;
+    }
+
+    public async Task AddMember(int performedBy, int organisationId, OrganisationMemberRequest request)
+    {
+        var organisation = await GetOrganisation(performedBy, organisationId);
+        var user = await GetUser(request.Username.ToLower());
+
+        if (user.Organisations.Contains(organisation))
+        {
+            throw new BadRequestException($"User is already member of organisation");
+        }
+
+        user.Organisations.Add(organisation);
+        await _dbContexts.SaveChangesAsync();
+    }
+
+    public async Task RemoveMember(int performedBy, int organisationId, OrganisationMemberRequest request)
+    {
+        var organisation = await GetOrganisation(performedBy, organisationId);
+        var user = await GetUser(request.Username.ToLower());
+        if (user.Organisations.Remove(organisation))
+        {
+            await _dbContexts.SaveChangesAsync();
         }
     }
 }

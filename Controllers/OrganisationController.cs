@@ -69,4 +69,19 @@ public class OrganisationController : ControllerBase
     {
         await _service.DeleteOrganisation(this.GetMemberId(), _idResolver.Decrypt(organisationId));
     }
+
+    [HttpPost("{organisationId}/members")]
+    public async Task AddMember(string organisationId, [FromBody] OrganisationMemberRequest username)
+    {
+        await _service.AddMember(this.GetMemberId(), _idResolver.Decrypt(organisationId), username);
+    }
+
+    /// <summary>
+    /// Delete an organisation
+    /// </summary>
+    [HttpDelete("{organisationId}/members")]
+    public async Task RemoveMember(string organisationId, [FromBody] OrganisationMemberRequest username)
+    {
+        await _service.RemoveMember(this.GetMemberId(), _idResolver.Decrypt(organisationId), username);
+    }
 }
