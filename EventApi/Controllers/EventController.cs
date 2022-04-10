@@ -4,6 +4,7 @@ using Event.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Event.Extension;
+using Event.Utils;
 
 namespace Event.Controllers;
 

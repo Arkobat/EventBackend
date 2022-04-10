@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Event.Model.Response;
 using Event.Service;
+using Event.Utils;
 
 namespace Event.Model;
 

@@ -2,6 +2,7 @@ using Event.Extension;
 using Event.Model.Request;
 using Event.Model.Response;
 using Event.Service;
+using Event.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

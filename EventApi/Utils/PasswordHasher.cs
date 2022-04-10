@@ -7,10 +7,10 @@ namespace Event.Utils;
 public interface IPasswordHasher
 {
     public string HashPassword(string password, string salt);
-    public string GenerateSalt();
+    public string GenerateSalt(int size = 16);
 }
 
-internal class PasswordHasher : IPasswordHasher
+public class PasswordHasher : IPasswordHasher
 {
     public string HashPassword(string password, string salt)
     {
@@ -24,9 +24,11 @@ internal class PasswordHasher : IPasswordHasher
         return hashed;
     }
 
-    public string GenerateSalt()
+    public string GenerateSalt(int size = 16)
     {
-        var salt = RandomNumberGenerator.GetBytes(128 / 8);
-        return Encoding.UTF8.GetString(salt);
+        var bytes = RandomNumberGenerator.GetBytes(size);
+        var salt = Convert.ToBase64String(bytes);
+        salt = salt.TrimEnd('=');
+        return salt;
     }
 }

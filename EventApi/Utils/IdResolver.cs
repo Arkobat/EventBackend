@@ -1,7 +1,7 @@
 using Event.Model.Exception;
 using HashidsNet;
 
-namespace Event.Service;
+namespace Event.Utils;
 
 public interface IIdResolver
 {
