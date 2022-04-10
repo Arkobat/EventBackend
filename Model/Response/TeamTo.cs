@@ -8,7 +8,7 @@ public class TeamTo : IComparable<TeamTo>
     /// The name of the team
     /// </summary>
     public string Name { get; init; } = null!;
-    
+
     /// <summary>
     /// How many points the team does currently have.
     /// Teams are sorted by points

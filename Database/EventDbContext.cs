@@ -32,6 +32,5 @@ public class EventDbContext : DbContext
                 .WithOne(t => t.Event)
                 .HasForeignKey(t => t.EventId);
         });
-
     }
 }

@@ -3,6 +3,7 @@ namespace Event.Model.Response;
 public class OrganisationTo
 {
     public string Id { get; init; } = null!;
+
     /// <summary>
     /// The name of the organisation
     /// </summary>

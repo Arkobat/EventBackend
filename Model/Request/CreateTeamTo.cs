@@ -4,13 +4,11 @@ namespace Event.Model.Request;
 
 public class CreateTeamTo
 {
-    [Required]
-    [MinLength(2)]
-    public string Name { get; set; } = null!;
-    
+    [Required] [MinLength(2)] public string Name { get; set; } = null!;
+
     public int ParticipantCount { get; set; }
     public int PaidParticipants { get; set; }
-    
+
     public int Points { get; set; }
     public double TieBreaker { get; set; }
 }

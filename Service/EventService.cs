@@ -94,7 +94,7 @@ public class EventService
         {
         }
     }
-    
+
     /// <summary>
     /// Ensures the member has access to the organisation.
     /// Will throw a NotFoundException if they do not have access

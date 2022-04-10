@@ -5,9 +5,7 @@ namespace Event.Model;
 
 public class Price
 {
-    
-    [Key]
-    public int Id { get; set; }
+    [Key] public int Id { get; set; }
     public double RegularPrice { get; set; }
     public double? MemberPrice { get; set; }
 

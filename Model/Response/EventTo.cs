@@ -3,6 +3,7 @@ namespace Event.Model.Response;
 public class EventTo
 {
     public string Id { get; set; } = null!;
+
     /// <summary>
     /// The name of the event
     /// </summary>

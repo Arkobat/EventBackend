@@ -6,8 +6,7 @@ namespace Event.Model;
 
 public class Organisation
 {
-    [Key]
-    public int Id { get; set; }
+    [Key] public int Id { get; set; }
     public string Name { get; set; } = null!;
     public List<Event> Events { get; set; } = new();
     public List<User> Members { get; set; } = new();
