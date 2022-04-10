@@ -7,21 +7,36 @@ namespace Event.Extension;
 
 public static class AuthExtension
 {
-
     public static void AddSwaggerBearerGen(this IServiceCollection services)
     {
         services.AddSwaggerGen(options =>
         {
-            options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
-                Description = "Authorization using Bearer scheme",
-                In = ParameterLocation.Header,
+                Description = "JWT Authorization header using the Bearer scheme.",
                 Name = "Authorization",
-                Type = SecuritySchemeType.ApiKey
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = "bearer"
+            });
+
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    new List<string>()
+                }
             });
         });
     }
-    
+
     public static void AddJwtBearerAuthentication(this IServiceCollection services, ConfigurationManager config)
     {
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
