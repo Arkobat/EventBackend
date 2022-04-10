@@ -20,9 +20,12 @@ services.AddJwtBearerAuthentication(config);
 
 services.AddDbContext<EventDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString(nameof(EventDbContext))!));
+
 services.AddScoped<OrganisationService>();
 services.AddScoped<EventService>();
 services.AddScoped<AuthService>();
+services.AddScoped<TeamService>();
+
 services.AddTransient<ExceptionMiddleware>();
 services.AddScoped<IHashids>(_ => new Hashids(
     config.GetSection("HashIds:Token").Value,

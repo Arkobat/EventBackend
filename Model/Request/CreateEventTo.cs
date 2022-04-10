@@ -5,7 +5,7 @@ namespace Event.Model.Request;
 
 public class CreateEventTo
 {
-    [Required] public string Name { get; set; } = null!;
+    [Required] [MinLength(2)] public string Name { get; set; } = null!;
     public PriceTo? Price { get; set; }
     public DateTime? StartDate { get; set; }
 }

@@ -5,6 +5,7 @@ namespace Event.Model.Request;
 public class CreateTeamTo
 {
     [Required]
+    [MinLength(2)]
     public string Name { get; set; } = null!;
     
     public int ParticipantCount { get; set; }

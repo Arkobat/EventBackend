@@ -4,6 +4,5 @@ namespace Event.Model.Request;
 
 public class CreateOrganisationTo
 {
-    [Required]
-    public string Name { get; set; } = null!;
+    [Required] [MinLength(2)] public string Name { get; set; } = null!;
 }
