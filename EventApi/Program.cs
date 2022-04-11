@@ -35,6 +35,16 @@ services.AddScoped<IIdResolver, HashIdResolver>();
 services.AddScoped<IPasswordHasher, PasswordHasher>();
 
 var app = builder.Build();
+
+app.UseCors(policy =>
+{
+    policy
+        .AllowCredentials()
+        .SetIsOriginAllowed(_ => true)
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+});
+
 app.AddExceptionHandling();
 
 // Configure the HTTP request pipeline.
